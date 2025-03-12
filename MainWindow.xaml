@@ -1,0 +1,90 @@
+﻿
+<Window x:Class="ShellAdapter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uicomponents="clr-namespace:ShellAdapter.UiComponents"
+        xmlns:output="clr-namespace:ShellAdapter.logic.consoleOutput"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="uicomponents:ConsoleInputTextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        
+            <!-- Style when focused -->
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#00BFFF"/> <!-- Glowing Blue Border -->
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#00BFFF" BlurRadius="10" ShadowDepth="0"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="uicomponents:ConsoleOutputTextBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        
+            <!-- Style when focused -->
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#00BFFF"/> <!-- Glowing Blue Border -->
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#00BFFF" BlurRadius="10" ShadowDepth="0"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <uicomponents:ConsoleOutputTextBox  
+            Grid.Row="1"
+            x:Name="ConsoleOutputTextBox"
+            VerticalScrollBarVisibility="Visible"
+            IsReadOnly="True">
+        </uicomponents:ConsoleOutputTextBox>
+        <output:ErrorPrinter Grid.Row="0" x:Name = "ErrorPrinter" NameOfBlockToWrite="ConsoleOutputTextBox">
+            
+        </output:ErrorPrinter>
+        <output:OutputPrinter Grid.Row="0" x:Name = "OutputPrinter" NameOfBlockToWrite="ConsoleOutputTextBox">
+            
+        </output:OutputPrinter>
+        <uicomponents:ConsoleInputTextBox  
+            Grid.Row="0"
+            x:Name="ConsoleInputTextBox"
+            TextWrapping="Wrap"
+            ErrorPrinterName="ErrorPrinter"
+            OutputPrinterName="OutputPrinter"
+            AcceptsReturn="True"
+            VerticalScrollBarVisibility="Visible">
+        </uicomponents:ConsoleInputTextBox>
+        
+    </Grid>
+</Window>

@@ -7,7 +7,7 @@ To run a project simply clone it.
 ```bash
 git clone https://github.com/kornilov-mr/ShellAdapter.git
 ```
-P.S the code is the master branch
+P.S the code is the master branch <br>
 Once the application has started default working directory will be *ShellAdapter/manualTestFolder* <br>
 Commands for manual testing:
 ```bash
